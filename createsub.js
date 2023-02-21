@@ -5,14 +5,14 @@ const crypto = require('crypto');
 // パーツの画像のパス
 const layersPath = './layers';
 // 出力用ディレクトリ
-const outputPath = './build';
+const outputPath = './create';
 // 出力する画像のファイル名
 const outputFileName = 'result.png';
 
 // 3つの文字列
-const stringA = 'yuji';
-const stringB = 'Wolds!';
-const stringC = 'JavaScr98277ipt';
+const stringA = 'yuj2344i';
+const stringB = 'W2311s!';
+const stringC = 'JavssaS';
 
 // 文字列Dの生成
 const stringD = stringA + stringB + stringC;
@@ -22,7 +22,7 @@ const hashCode = hashCodeFromString(stringD);
 
 // ハッシュ値から数字部分を抜き出し、4で割った余りを取得
 const digitPart = hashCode.replace(/\D/g, '');  // ハッシュ値の数字部分のみを取り出す
-const remainder = digitPart % 4;
+const remainder = digitPart % 3;
 
 // 文字列からハッシュ値を生成する関数
 function hashCodeFromString(str) {

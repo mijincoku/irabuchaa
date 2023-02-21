@@ -1,6 +1,6 @@
 // 文字列A、B、Cの定義
 const stringA = "Hello, ";
-const stringB = "worlds1111!";
+const stringB = "worlds1122311!";
 const stringC = " This is a sample text.";
 
 // 文字列Dの生成
