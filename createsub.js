@@ -1,6 +1,5 @@
 const fs = require('fs');
 const { createCanvas, loadImage } = require('canvas');
-const crypto = require('crypto');
 
 // パーツの画像のパス
 const layersPath = './layers';
