@@ -10,7 +10,7 @@ const outputPath = './build';
 const outputFileName = 'result.png';
 
 // 3つの文字列
-const stringA = 'aaaaaaHello!';
+const stringA = 'yuji';
 const stringB = 'Wor3333lds!';
 const stringC = 'JavaScr98277ipt';
 
@@ -20,9 +20,9 @@ const stringD = stringA + stringB + stringC;
 // 文字列Dをハッシュ値に変換
 const hashCode = hashCodeFromString(stringD);
 
-// ハッシュ値から数字部分を抜き出し、5で割った余りを取得
+// ハッシュ値から数字部分を抜き出し、4で割った余りを取得
 const digitPart = hashCode.replace(/\D/g, '');  // ハッシュ値の数字部分のみを取り出す
-const remainder = digitPart % 5;
+const remainder = digitPart % 4;
 
 // 文字列からハッシュ値を生成する関数
 function hashCodeFromString(str) {
@@ -55,7 +55,7 @@ async function generateImage() {
   const ctx = canvas.getContext('2d');
 
   // パーツの画像を読み込んでランダムに配置
-  const parts = ['glass', 'face', 'mouth', 'hair'];
+  const parts = ['hire', 'body', 'dot', 'mune'];
   for (const part of parts) {
     const layerIndex = getRandomLayerIndex();
     const layerPath = `${layersPath}/${part}_${layerIndex}.png`;
@@ -70,10 +70,10 @@ async function generateImage() {
   // ハッシュ値から色を生成
   const color = `#${hashValue.substring(0, 6)}`;
 
-  // 背景を生成した色で塗りつぶす
-  ctx.globalCompositeOperation = 'color';
-  ctx.fillStyle = color;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  // // 背景を生成した色で塗りつぶす
+  // ctx.globalCompositeOperation = 'color';
+  // ctx.fillStyle = color;
+  // ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // 画像をファイルに出力
   if (!fs.existsSync(outputPath)) {
