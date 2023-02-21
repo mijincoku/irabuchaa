@@ -11,7 +11,7 @@ const outputFileName = 'result.png';
 
 // 3つの文字列
 const stringA = 'yuji';
-const stringB = 'Wor3333lds!';
+const stringB = 'Wolds!';
 const stringC = 'JavaScr98277ipt';
 
 // 文字列Dの生成
