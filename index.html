@@ -1,60 +1,26 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>Hash Value Example</title>
-	<style>
-		#result {
-			font-size: 16pt;
-		}
-	</style>
-</head>
-<body>
-	<p id="result"></p>
+  <head>
+   <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+   <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+  </head>
+  
+  <body style="margin : 0px; overflow: hidden;">
+    <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3; patternRatio:0.6;'>
 
-	<script>
-		// ①文字列A、文字列B、文字列Cを連結させ、文字列Dを作成
-		var stringA = "Hello";
-		var stringB = "World";
-		var stringC = "JavaScript";
-		var stringD = stringA + stringB + stringC;
+      <a-assets>
+        <img id="ARgif" src="ARgif.gif" />
+      </a-assets>
 
-		// ②文字列Dをハッシュ値に変換
-		var hashValue = sha256(stringD);
+      <a-marker type='pattern' url='pattern-shiroharaAR.patt'>
+        <a-entity 
+          geometry="primitive:plane;"
+          material="shader:gif; src:url(build/result.png); color:white; opacity:1">
+        </a-entity>
+      </a-marker>
 
-		// ③②で得たハッシュ値から数字部分を抜き出し、それを10で割った際の余りを取得
-		var numericValue = hashValue.replace(/\D/g,'');
-		var remainder = parseInt(numericValue) % 10;
-
-		// 結果を表示
-		var resultElement = document.getElementById("result");
-		resultElement.innerHTML = "余りは " + remainder + " です。";
-
-		// スタイルを適用
-		resultElement.style.fontSize = "16pt";
-
-		// sha256関数
-		function sha256(message) {
-			var msgBuffer = new TextEncoder().encode(message);
-			return crypto.subtle.digest("SHA-256", msgBuffer).then(function(hash) {
-				return hex(hash);
-			});
-		}
-
-		// ハッシュ値を16進数文字列に変換する関数
-		function hex(buffer) {
-			var hexCodes = [];
-			var view = new DataView(buffer);
-			for (var i = 0; i < view.byteLength; i += 4) {
-				var value = view.getUint32(i)
-				var stringValue = value.toString(16)
-				var padding = '00000000'
-				var paddedValue = (padding + stringValue).slice(-padding.length)
-				hexCodes.push(paddedValue);
-			}
-			return hexCodes.join("");
-		}
-	</script>
-
-</body>
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
 </html>
