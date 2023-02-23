@@ -9,17 +9,18 @@ var wallet = urlParams.get('wallet');
 var nfts = urlParams.get('nfts');
 var li = urlParams.get('nfts');
 
+// 3つの文字列
+const stringA = wallet;
+const stringB = nfts;
+const stringC = li;
+
 // パーツの画像のパス
 const layersPath = './layers';
 // 出力用ディレクトリ
 const outputPath = './create';
 // 出力する画像のファイル名
-const outputFileName = 'result.png';
+const outputFileName = stringA+'.png';
 
-// 3つの文字列
-const stringA = wallet;
-const stringB = nfts;
-const stringC = li;
 
 // 文字列Dの生成
 const stringD = stringA + stringB + stringC;
