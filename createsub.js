@@ -1,7 +1,7 @@
 // const fs = require('fs');
 // const { createCanvas, loadImage } = require('canvas');
 
-import { createCanvas, loadImage } from 'fs';
+// import { existsSync(),mkdirSync(),createWriteStream() } from 'fs';
 import { createCanvas, loadImage } from 'canvas';
 
 //いまのページのURLを取得 
