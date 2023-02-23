@@ -82,11 +82,11 @@ async function generateImage() {
 }
 
 
-  // 画像をファイルに出力
-  const downloadLink = document.createElement('a');
-  downloadLink.download = outputFileName;
-  downloadLink.href = canvas.toDataURL('image/png');
-  downloadLink.click();
+  // // 画像をファイルに出力
+  // const downloadLink = document.createElement('a');
+  // downloadLink.download = outputFileName;
+  // downloadLink.href = canvas.toDataURL('image/png');
+  // downloadLink.click();
 
 
 generateImage();
