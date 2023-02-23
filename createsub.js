@@ -7,7 +7,7 @@ var urlParams = new URLSearchParams(window.location.search);
 // パラメータを取得
 var wallet = urlParams.get('wallet');
 var nfts = urlParams.get('nfts');
-var li = urlParams.get('li');
+var li = urlParams.get('nfts');
 
 // パーツの画像のパス
 const layersPath = './layers';
@@ -19,7 +19,7 @@ const outputFileName = 'result.png';
 // 3つの文字列
 const stringA = wallet;
 const stringB = nfts;
-const stringC = '40';
+const stringC = li;
 
 // 文字列Dの生成
 const stringD = stringA + stringB + stringC;
