@@ -48,14 +48,16 @@ function getRandomLayerIndex() {
 async function generateImage() {
   const ctx = canvas.getContext('2d');
 
-  // パーツの画像を読み込んでランダムに配置
-  const parts = ['hire', 'body', 'dot', 'mune'];
-  for (const part of parts) {
-    const layerIndex = getRandomLayerIndex();
-    const layerPath = `${layersPath}/${part}_${layerIndex}.png`;
-    const layer = await loadImage(layerPath);
-    ctx.drawImage(layer, 0, 0, canvas.width, canvas.height);
-  }
+// パーツの画像を読み込んでランダムに配置
+const parts = ['hire', 'body', 'dot', 'mune'];
+
+for (const part of parts) {
+  const layerIndex = getRandomLayerIndex();
+  const layerPath = `${layersPath}/${part}_${layerIndex}.png`;
+  const layer = await createImageBitmap(await fetch(layerPath));
+  ctx.drawImage(layer, 0, 0, canvas.width, canvas.height);
+}
+
 
   // 画像をファイルに出力
   const dataURL = canvas.toDataURL();
