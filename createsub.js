@@ -61,8 +61,8 @@ function loadImage(src) {
 async function generateImage() {
   // HTMLのcanvas要素を取得
   const canvas = document.getElementById('myCanvas');
-  canvas.width = 1447;
-  canvas.height = 641;
+  canvas.width = 723;
+  canvas.height = 320;
   
   const ctx = canvas.getContext('2d');
 
