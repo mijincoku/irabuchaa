@@ -2,7 +2,7 @@
 // const { createCanvas, loadImage } = require('canvas');
 
 // import { existsSync(),mkdirSync(),createWriteStream() } from 'fs';
-import { createCanvas, loadImage } from './node_modules/canvas';
+import { createCanvas, loadImage } from '/node_modules/canvas';
 
 //いまのページのURLを取得 
 var urlParams = new URLSearchParams(window.location.search);
