@@ -19,7 +19,7 @@ const layersPath = './layers';
 // 出力用ディレクトリ
 const outputPath = './create';
 // 出力する画像のファイル名
-const outputFileName = stringA+'.png';
+const outputFileName = 'result.png';
 
 
 // 文字列Dの生成
