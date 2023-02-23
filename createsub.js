@@ -48,15 +48,40 @@ function getRandomLayerIndex() {
 async function generateImage() {
   const ctx = canvas.getContext('2d');
 
-// パーツの画像を読み込んでランダムに配置
-const parts = ['hire', 'body', 'dot', 'mune'];
+function loadImage(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.addEventListener('load', () => resolve(img));
+      img.addEventListener('error', err => reject(err));
+      img.setAttribute('src', src);
+    });
+  }
+  
 
-for (const part of parts) {
-  const layerIndex = getRandomLayerIndex();
-  const layerPath = `${layersPath}/${part}_${layerIndex}.png`;
-  const layer = await createImageBitmap(await fetch(layerPath));
-  ctx.drawImage(layer, 0, 0, canvas.width, canvas.height);
-}
+  async function generateImage() {
+    const canvas = createCanvas(1447, 641);
+    const ctx = canvas.getContext('2d');
+  
+    // パーツの画像を読み込んでランダムに配置
+    const parts = ['hire', 'body', 'dot', 'mune'];
+    for (const part of parts) {
+      const layerIndex = getRandomLayerIndex();
+      const layerPath = `${layersPath}/${part}_${layerIndex}.png`;
+      const layer = await loadImage(layerPath);
+      ctx.drawImage(layer, 0, 0, canvas.width, canvas.height);
+    }
+  
+    // 画像をファイルに出力
+    if (!fs.existsSync(outputPath)) {
+      fs.mkdirSync(outputPath);
+    }
+    const out = fs.createWriteStream(`${outputPath}/${outputFileName}`);
+    const stream = canvas.createPNGStream();
+    stream.pipe(out);
+    out.on('finish', () => console.log('The PNG file was created.'));
+  }
+  
+  
 
 
   // 画像をファイルに出力
