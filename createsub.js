@@ -59,7 +59,11 @@ function loadImage(src) {
 
 
 async function generateImage() {
-  const canvas = createCanvas(1447, 641);
+  // HTMLのcanvas要素を取得
+  const canvas = document.getElementById('myCanvas');
+  canvas.width = 1447;
+  canvas.height = 641;
+  
   const ctx = canvas.getContext('2d');
 
   // パーツの画像を読み込んでランダムに配置
@@ -72,21 +76,13 @@ async function generateImage() {
   }
 
   // 画像をファイルに出力
-  if (!fs.existsSync(outputPath)) {
-    fs.mkdirSync(outputPath);
-  }
-  const out = fs.createWriteStream(`${outputPath}/${outputFileName}`);
-  const stream = canvas.createPNGStream();
-  stream.pipe(out);
-  out.on('finish', () => console.log('The PNG file was created.'));
+  const image = canvas.toDataURL();
+  const link = document.createElement('a');
+  link.href = image;
+  link.download = outputFileName;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
-
-
-  // // 画像をファイルに出力
-  // const downloadLink = document.createElement('a');
-  // downloadLink.download = outputFileName;
-  // downloadLink.href = canvas.toDataURL('image/png');
-  // downloadLink.click();
-
 
 generateImage();
