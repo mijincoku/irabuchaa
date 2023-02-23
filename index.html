@@ -4,14 +4,15 @@
    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+   <script src="createsub.js"></script>
   </head>
   
   <body style="margin : 0px; overflow: hidden;">
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3; patternRatio:0.6;'>
 
-      <a-assets>
+      <!-- <a-assets>
         <img id="ARgif" src="ARgif.gif" />
-      </a-assets>
+      </a-assets> -->
 
       <a-marker type='pattern' url='pattern-shiroharaAR.patt'>
         <a-entity 

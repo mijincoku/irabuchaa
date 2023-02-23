@@ -1,8 +1,10 @@
 const fs = require('fs');
 const { createCanvas, loadImage } = require('canvas');
 
+//いまのページのURLを取得 
 var urlParams = new URLSearchParams(window.location.search);
 
+// パラメータを取得
 var wallet = urlParams.get('wallet');
 var nfts = urlParams.get('nfts');
 var li = urlParams.get('li');
@@ -27,7 +29,7 @@ const hashCode = hashCodeFromString(stringD);
 
 // ハッシュ値から数字部分を抜き出し、4で割った余りを取得
 const digitPart = hashCode.replace(/\D/g, '');  // ハッシュ値の数字部分のみを取り出す
-const remainder = digitPart % 3;
+const remainder = digitPart % 4;
 
 // 文字列からハッシュ値を生成する関数
 function hashCodeFromString(str) {
