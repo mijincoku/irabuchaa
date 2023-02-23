@@ -1,5 +1,3 @@
-import { createCanvas, loadImage } from 'canvas';
-
 //いまのページのURLを取得 
 var urlParams = new URLSearchParams(window.location.search);
 
@@ -15,19 +13,16 @@ const stringC = li;
 
 // パーツの画像のパス
 const layersPath = './layers';
-// 出力用ディレクトリ
-const outputPath = './create';
-// 出力する画像のファイル名
-const outputFileName = 'result.png';
 
-
-// 文字列Dの生成
-const stringD = stringA + stringB + stringC;
-
-// 文字列Dをハッシュ値に変換
-const hashCode = hashCodeFromString(stringD);
+// 出力用キャンバス要素
+const canvas = document.createElement('canvas');
+canvas.width = 1447;
+canvas.height = 641;
+document.body.appendChild(canvas);
 
 // ハッシュ値から数字部分を抜き出し、4で割った余りを取得
+const stringD = stringA + stringB + stringC;
+const hashCode = hashCodeFromString(stringD);
 const digitPart = hashCode.replace(/\D/g, '');  // ハッシュ値の数字部分のみを取り出す
 const remainder = digitPart % 4;
 
@@ -51,7 +46,6 @@ function getRandomLayerIndex() {
 }
 
 async function generateImage() {
-  const canvas = createCanvas(1447, 641);
   const ctx = canvas.getContext('2d');
 
   // パーツの画像を読み込んでランダムに配置
@@ -63,15 +57,14 @@ async function generateImage() {
     ctx.drawImage(layer, 0, 0, canvas.width, canvas.height);
   }
 
-
   // 画像をファイルに出力
-  if (!fs.existsSync(outputPath)) {
-    fs.mkdirSync(outputPath);
-  }
-  const out = fs.createWriteStream(`${outputPath}/${outputFileName}`);
-  const stream = canvas.createPNGStream();
-  stream.pipe(out);
-  out.on('finish', () => console.log('The PNG file was created.'));
+  const dataURL = canvas.toDataURL();
+  const link = document.createElement('a');
+  link.download = 'result.png';
+  link.href = dataURL;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 generateImage();
