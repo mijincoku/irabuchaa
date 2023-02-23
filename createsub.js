@@ -48,10 +48,18 @@ function getRandomLayerIndex() {
   return Math.floor(Math.random() * remainder);
 }
 
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.addEventListener('load', () => resolve(img));
+    img.addEventListener('error', err => reject(err));
+    img.setAttribute('src', src);
+  });
+}
+
+
 async function generateImage() {
-  const canvas = document.createElement('canvas');
-  canvas.width = 1447;
-  canvas.height = 641;
+  const canvas = createCanvas(1447, 641);
   const ctx = canvas.getContext('2d');
 
   // パーツの画像を読み込んでランダムに配置
@@ -62,6 +70,16 @@ async function generateImage() {
     const layer = await loadImage(layerPath);
     ctx.drawImage(layer, 0, 0, canvas.width, canvas.height);
   }
+
+  // 画像をファイルに出力
+  if (!fs.existsSync(outputPath)) {
+    fs.mkdirSync(outputPath);
+  }
+  const out = fs.createWriteStream(`${outputPath}/${outputFileName}`);
+  const stream = canvas.createPNGStream();
+  stream.pipe(out);
+  out.on('finish', () => console.log('The PNG file was created.'));
+}
 
 
   // 画像をファイルに出力
