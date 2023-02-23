@@ -87,6 +87,6 @@ async function generateImage() {
   downloadLink.download = outputFileName;
   downloadLink.href = canvas.toDataURL('image/png');
   downloadLink.click();
-}
+
 
 generateImage();
