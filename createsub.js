@@ -19,7 +19,7 @@ const outputFileName = 'result.png';
 // 3つの文字列
 const stringA = wallet;
 const stringB = nfts;
-const stringC = '2';
+const stringC = '40';
 
 // 文字列Dの生成
 const stringD = stringA + stringB + stringC;
