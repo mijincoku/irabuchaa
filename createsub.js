@@ -58,7 +58,7 @@ function getRandomLayerIndex() {
 }
 
 async function generateImage() {
-  const canvas = createCanvas(400, 400);
+  const canvas = createCanvas(1447, 641);
   const ctx = canvas.getContext('2d');
 
   // パーツの画像を読み込んでランダムに配置
