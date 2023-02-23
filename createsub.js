@@ -1,6 +1,12 @@
 const fs = require('fs');
 const { createCanvas, loadImage } = require('canvas');
 
+var urlParams = new URLSearchParams(window.location.search);
+
+var wallet = urlParams.get('wallet');
+var nfts = urlParams.get('nfts');
+var li = urlParams.get('li');
+
 // パーツの画像のパス
 const layersPath = './layers';
 // 出力用ディレクトリ
@@ -9,9 +15,9 @@ const outputPath = './create';
 const outputFileName = 'result.png';
 
 // 3つの文字列
-const stringA = 'yuj2344i';
-const stringB = 'W2311s!';
-const stringC = 'JavssaS';
+const stringA = wallet;
+const stringB = nfts;
+const stringC = li;
 
 // 文字列Dの生成
 const stringD = stringA + stringB + stringC;
