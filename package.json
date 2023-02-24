@@ -1,5 +1,25 @@
 {
   "dependencies": {
     "canvas": "^2.11.0"
-  }
+  },
+  "name": "irabuchaa",
+  "description": "",
+  "version": "1.0.0",
+  "main": "createsub.js",
+  "devDependencies": {
+    "webpack": "^5.75.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mijincoku/irabuchaa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mijincoku/irabuchaa/issues"
+  },
+  "homepage": "https://github.com/mijincoku/irabuchaa#readme"
 }
