@@ -1,3 +1,7 @@
+const fs = require('fs');
+const { createCanvas, loadImage } = require('canvas');
+
+
 //いまのページのURLを取得 
 var urlParams = new URLSearchParams(window.location.search);
 
@@ -43,27 +47,20 @@ function hashCodeFromString(str) {
   return hash.toString();
 }
 
+// 文字列からハッシュ値を生成する関数
+// function getHash(string) {
+//   const hash = crypto.createHash('sha256');
+//   hash.update(string);
+//   return hash.digest('hex');
+// }
+
 // ランダムにパーツを選択する関数
 function getRandomLayerIndex() {
   return Math.floor(Math.random() * remainder);
 }
 
-function loadImage(src) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.addEventListener('load', () => resolve(img));
-    img.addEventListener('error', err => reject(err));
-    img.setAttribute('src', src);
-  });
-}
-
-
 async function generateImage() {
-  // HTMLのcanvas要素を取得
-  const canvas = document.getElementById('myCanvas');
-  canvas.width = 723;
-  canvas.height = 320;
-  
+  const canvas = createCanvas(1447, 641);
   const ctx = canvas.getContext('2d');
 
   // パーツの画像を読み込んでランダムに配置
@@ -75,14 +72,26 @@ async function generateImage() {
     ctx.drawImage(layer, 0, 0, canvas.width, canvas.height);
   }
 
+  // 3つの文字列からハッシュ値を生成
+  const stringD = stringA + stringB + stringC;
+  const hashValue = hashCodeFromString(stringD);
+
+  // ハッシュ値から色を生成
+  const color = `#${hashValue.substring(0, 6)}`;
+
+  // // 背景を生成した色で塗りつぶす
+  // ctx.globalCompositeOperation = 'color';
+  // ctx.fillStyle = color;
+  // ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   // 画像をファイルに出力
-  const image = canvas.toDataURL();
-  const link = document.createElement('a');
-  link.href = image;
-  link.download = outputFileName;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  if (!fs.existsSync(outputPath)) {
+    fs.mkdirSync(outputPath);
+  }
+  const out = fs.createWriteStream(`${outputPath}/${outputFileName}`);
+  const stream = canvas.createPNGStream();
+  stream.pipe(out);
+  out.on('finish', () => console.log('The PNG file was created.'));
 }
 
 generateImage();
